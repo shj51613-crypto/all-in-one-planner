@@ -335,3 +335,68 @@ textarea{
 .time-block:last-child{
     border-right:none;
 }
+
+.schedule-modal{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.3);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:10000;
+}
+
+.schedule-modal.open{
+    display:flex;
+}
+
+.schedule-box{
+
+    width:90%;
+    max-width:360px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.schedule-box input,
+.schedule-box select{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+}
+
+.schedule-buttons{
+
+    display:flex;
+    gap:10px;
+}
+
+.schedule-buttons button{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}
