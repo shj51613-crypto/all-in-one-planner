@@ -195,29 +195,56 @@ function createTimeGrid(){
 
     timeGrid.innerHTML = "";
 
+    // 상단 분 표시
+    const header =
+        document.createElement("div");
+
+    header.className = "time-header";
+
+    header.innerHTML = `
+        <div></div>
+        <div class="minute-label">05</div>
+        <div class="minute-label">10</div>
+        <div class="minute-label">15</div>
+        <div class="minute-label">20</div>
+        <div class="minute-label">25</div>
+        <div class="minute-label">30</div>
+        <div class="minute-label">35</div>
+        <div class="minute-label">40</div>
+        <div class="minute-label">45</div>
+        <div class="minute-label">50</div>
+        <div class="minute-label">55</div>
+        <div class="minute-label">60</div>
+    `;
+
+    timeGrid.appendChild(header);
+
+    // 24시간 생성
     for(let hour = 0; hour < 24; hour++){
 
-        for(let minute = 0; minute < 60; minute += 5){
+        const row =
+            document.createElement("div");
 
-            const time =
-                `${String(hour).padStart(2,"0")}:${String(minute).padStart(2,"0")}`;
+        row.className = "hour-row";
 
-            const row =
-                document.createElement("div");
+        let blocks = "";
 
-            row.className = "time-row";
+        for(let i = 0; i < 12; i++){
 
-            row.innerHTML = `
-                <div class="time-label">
-                    ${time}
-                </div>
-
-                <div class="time-cell"></div>
+            blocks += `
+                <div class="time-block"></div>
             `;
-
-            timeGrid.appendChild(row);
-
         }
+
+        row.innerHTML = `
+            <div class="hour-label">
+                ${String(hour).padStart(2,"0")}
+            </div>
+
+            ${blocks}
+        `;
+
+        timeGrid.appendChild(row);
 
     }
 
