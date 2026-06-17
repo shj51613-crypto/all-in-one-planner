@@ -1,3 +1,5 @@
+let currentDate = new Date();
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const navButtons = document.querySelectorAll(".bottom-nav button");
@@ -27,34 +29,115 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    createCalendar();
+    document
+        .getElementById("prevMonth")
+        .addEventListener("click", previousMonth);
+
+    document
+        .getElementById("nextMonth")
+        .addEventListener("click", nextMonth);
+
+    renderCalendar();
 
 });
 
-function createCalendar() {
+function previousMonth() {
 
-    const calendarGrid = document.querySelector(".calendar-grid");
+    currentDate.setMonth(
+        currentDate.getMonth() - 1
+    );
 
-    if (!calendarGrid) return;
+    renderCalendar();
+
+}
+
+function nextMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() + 1
+    );
+
+    renderCalendar();
+
+}
+
+function renderCalendar() {
+
+    const calendarGrid =
+        document.querySelector(".calendar-grid");
+
+    const monthTitle =
+        document.getElementById("currentMonth");
 
     calendarGrid.innerHTML = "";
 
-    const totalDays = 42; // 6주 고정
+    const year =
+        currentDate.getFullYear();
 
-    for (let i = 1; i <= totalDays; i++) {
+    const month =
+        currentDate.getMonth();
+
+    monthTitle.textContent =
+        `${year}년 ${month + 1}월`;
+
+    const firstDay =
+        new Date(year, month, 1);
+
+    const startDay =
+        firstDay.getDay();
+
+    const lastDate =
+        new Date(year, month + 1, 0).getDate();
+
+    const prevLastDate =
+        new Date(year, month, 0).getDate();
+
+    let dayNumber = 1;
+    let nextDay = 1;
+
+    for (let i = 0; i < 42; i++) {
 
         const day = document.createElement("div");
         day.className = "day";
 
+        let displayNumber = "";
+        let extraClass = "";
+
+        if (i < startDay) {
+
+            displayNumber =
+                prevLastDate - startDay + i + 1;
+
+            extraClass = "other-month";
+
+        } else if (
+            dayNumber <= lastDate
+        ) {
+
+            displayNumber = dayNumber;
+            dayNumber++;
+
+        } else {
+
+            displayNumber = nextDay;
+            nextDay++;
+
+            extraClass = "other-month";
+
+        }
+
         day.innerHTML = `
             <div class="date-area">
-                <div class="date-number">${i <= 30 ? i : ""}</div>
-                <div class="lunar-date">${i <= 30 ? "음력" : ""}</div>
+                <div class="date-number ${extraClass}">
+                    ${displayNumber}
+                </div>
             </div>
 
             <div class="schedule-area"></div>
         `;
 
         calendarGrid.appendChild(day);
+
     }
+
 }
