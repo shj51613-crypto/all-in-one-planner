@@ -198,3 +198,77 @@ textarea{
 .other-month{
     color:#d5cec5;
 }
+
+.dayview-modal{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:#fcfaf7;
+
+    z-index:9999;
+
+    display:none;
+
+    overflow-y:auto;
+}
+
+.dayview-modal.open{
+    display:block;
+}
+
+.dayview-header{
+    padding:16px;
+}
+
+.dayview-header button{
+    border:none;
+    background:none;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.dayview-date{
+    padding:0 20px 20px;
+}
+
+.dayview-date h2{
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+.dayview-date p{
+    color:#c8beb2;
+    font-size:11px;
+}
+
+.dayview-tabs{
+    display:flex;
+    gap:8px;
+    padding:0 20px;
+}
+
+.dayview-tab{
+    flex:1;
+
+    border:none;
+
+    background:#f3eee8;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    cursor:pointer;
+}
+
+.dayview-tab.active{
+    background:#e4ddd4;
+}
+
+.dayview-content{
+    padding:20px;
+}
