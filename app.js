@@ -136,8 +136,50 @@ function renderCalendar() {
             <div class="schedule-area"></div>
         `;
 
+day.addEventListener("click", () => {
+
+    openDayView(displayNumber);
+
+});        
         calendarGrid.appendChild(day);
 
     }
 
 }
+
+function openDayView(dayNumber){
+
+    const modal =
+        document.getElementById("dayViewModal");
+
+    const selectedDate =
+        document.getElementById("selectedDate");
+
+    const month =
+        currentDate.getMonth() + 1;
+
+    selectedDate.textContent =
+        `${month}월 ${dayNumber}일`;
+
+    modal.classList.add("open");
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const closeBtn =
+        document.getElementById("closeDayView");
+
+    if(closeBtn){
+
+        closeBtn.addEventListener("click", () => {
+
+            document
+                .getElementById("dayViewModal")
+                .classList.remove("open");
+
+        });
+
+    }
+
+});
