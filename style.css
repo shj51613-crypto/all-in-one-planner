@@ -400,3 +400,38 @@ textarea{
 
     cursor:pointer;
 }
+
+.calendar-schedule{
+
+    font-size:11px;
+
+    padding:2px 6px;
+
+    border-radius:6px;
+
+    margin-bottom:2px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+
+    color:white;
+}
+
+.calendar-schedule.개인일정{
+    background:#8fb8ff;
+}
+
+.calendar-schedule.계획{
+    background:#9fd6a5;
+}
+
+.calendar-schedule.가족일정{
+    background:#f6b37b;
+}
+
+.calendar-schedule.스포츠일정{
+    background:#d89bf3;
+}
