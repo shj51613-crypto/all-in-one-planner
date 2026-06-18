@@ -189,11 +189,26 @@ function renderCalendar(){
                 const schedule =
                     document.createElement("div");
 
-                schedule.className =
-                    `calendar-schedule ${item.category}`;
+                const categoryMap = {
 
-                schedule.textContent =
-                    item.title;
+    "개인일정":"personal",
+    "계획":"plan",
+    "가족일정":"family",
+    "스포츠일정":"sports"
+
+};
+
+schedule.className =
+    `calendar-schedule ${
+        item.allDay ? "allday" : "time"
+    } ${
+        categoryMap[item.category]
+    }`;
+
+schedule.textContent =
+    item.allDay
+        ? item.title
+        : `${item.startTime} ${item.title}`;
 
                 scheduleArea.appendChild(schedule);
 
@@ -338,13 +353,23 @@ function saveSchedule(){
             .getElementById("allDayCheck")
             .checked
 
-                ? "[종일] " + title
+                title: title,
 
                 : title,
 
         category:
             document
             .getElementById("scheduleCategory")
+            .value,
+
+        allDay:
+            document
+            .getElementById("allDayCheck")
+            .checked,
+
+        startTime:
+            document
+            .getElementById("startTime")
             .value
 
     });
@@ -360,67 +385,3 @@ function saveSchedule(){
     renderCalendar();
 
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const saveBtn =
-        document.getElementById("saveSchedule");
-
-    if(!saveBtn) return;
-
-    saveBtn.addEventListener("click", () => {
-
-        const title =
-            document.getElementById("scheduleTitle").value;
-
-        const category =
-            document.getElementById("scheduleCategory").value;
-
-        const allDay =
-            document.getElementById("allDayCheck").checked;
-
-        const startTime =
-            document.getElementById("startTime").value;
-
-        const endTime =
-            document.getElementById("endTime").value;
-
-        if(!title.trim()){
-
-            alert("일정 제목을 입력하세요.");
-
-            return;
-        }
-
-        schedules.push({
-
-            year:
-                currentDate.getFullYear(),
-
-            month:
-                currentDate.getMonth() + 1,
-
-            day:
-                selectedDay,
-
-            title,
-            category,
-            allDay,
-            startTime,
-            endTime
-
-        });
-
-        document
-            .getElementById("scheduleModal")
-            .classList.remove("open");
-
-        document
-            .getElementById("scheduleTitle")
-            .value = "";
-
-        renderCalendar();
-
-    });
-
-});
