@@ -1,15 +1,22 @@
 let currentDate = new Date();
 
+let schedules = [];
+let selectedDay = null;
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const navButtons = document.querySelectorAll(".bottom-nav button");
-    const pages = document.querySelectorAll(".page");
+    const navButtons =
+        document.querySelectorAll(".bottom-nav button");
+
+    const pages =
+        document.querySelectorAll(".page");
 
     navButtons.forEach(button => {
 
         button.addEventListener("click", () => {
 
-            const targetPage = button.dataset.page;
+            const targetPage =
+                button.dataset.page;
 
             pages.forEach(page => {
                 page.classList.remove("active");
@@ -37,11 +44,35 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("nextMonth")
         .addEventListener("click", nextMonth);
 
+    document
+        .getElementById("closeDayView")
+        .addEventListener("click", () => {
+
+            document
+                .getElementById("dayViewModal")
+                .classList.remove("open");
+
+        });
+
+    document
+        .getElementById("cancelSchedule")
+        .addEventListener("click", () => {
+
+            document
+                .getElementById("scheduleModal")
+                .classList.remove("open");
+
+        });
+
+    document
+        .getElementById("saveSchedule")
+        .addEventListener("click", saveSchedule);
+
     renderCalendar();
 
 });
 
-function previousMonth() {
+function previousMonth(){
 
     currentDate.setMonth(
         currentDate.getMonth() - 1
@@ -51,7 +82,7 @@ function previousMonth() {
 
 }
 
-function nextMonth() {
+function nextMonth(){
 
     currentDate.setMonth(
         currentDate.getMonth() + 1
@@ -61,7 +92,7 @@ function nextMonth() {
 
 }
 
-function renderCalendar() {
+function renderCalendar(){
 
     const calendarGrid =
         document.querySelector(".calendar-grid");
@@ -95,29 +126,31 @@ function renderCalendar() {
     let dayNumber = 1;
     let nextDay = 1;
 
-    for (let i = 0; i < 42; i++) {
+    for(let i = 0; i < 42; i++){
 
-        const day = document.createElement("div");
+        const day =
+            document.createElement("div");
+
         day.className = "day";
 
         let displayNumber = "";
         let extraClass = "";
 
-        if (i < startDay) {
+        if(i < startDay){
 
             displayNumber =
                 prevLastDate - startDay + i + 1;
 
             extraClass = "other-month";
 
-        } else if (
-            dayNumber <= lastDate
-        ) {
+        }
+        else if(dayNumber <= lastDate){
 
             displayNumber = dayNumber;
             dayNumber++;
 
-        } else {
+        }
+        else{
 
             displayNumber = nextDay;
             nextDay++;
@@ -127,36 +160,61 @@ function renderCalendar() {
         }
 
         day.innerHTML = `
-    <div class="date-area">
-        <div class="date-number ${extraClass}">
-            ${displayNumber}
-        </div>
-    </div>
+            <div class="date-area">
+                <div class="date-number ${extraClass}">
+                    ${displayNumber}
+                </div>
+            </div>
 
-    <div class="schedule-area"></div>
-`;
+            <div class="schedule-area"></div>
+        `;
 
-const dateArea =
-    day.querySelector(".date-area");
+        const dateArea =
+            day.querySelector(".date-area");
 
-dateArea.addEventListener("click", (e) => {
+        const scheduleArea =
+            day.querySelector(".schedule-area");
 
-    e.stopPropagation();
+        const daySchedules =
+            schedules.filter(item =>
+                item.year === year &&
+                item.month === month + 1 &&
+                item.day === displayNumber
+            );
 
-    openDayView(displayNumber);
+        daySchedules
+            .slice(0,2)
+            .forEach(item => {
 
-});
+                const schedule =
+                    document.createElement("div");
 
-const scheduleArea =
-    day.querySelector(".schedule-area");
+                schedule.className =
+                    `calendar-schedule ${item.category}`;
 
-scheduleArea.addEventListener("click", (e) => {
+                schedule.textContent =
+                    item.title;
 
-    e.stopPropagation();
+                scheduleArea.appendChild(schedule);
 
-    openScheduleModal(displayNumber);
+            });
 
-});
+        dateArea.addEventListener("click", (e) => {
+
+            e.stopPropagation();
+
+            openDayView(displayNumber);
+
+        });
+
+        scheduleArea.addEventListener("click", (e) => {
+
+            e.stopPropagation();
+
+            openScheduleModal(displayNumber);
+
+        });
+
         calendarGrid.appendChild(day);
 
     }
@@ -183,25 +241,6 @@ function openDayView(dayNumber){
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const closeBtn =
-        document.getElementById("closeDayView");
-
-    if(closeBtn){
-
-        closeBtn.addEventListener("click", () => {
-
-            document
-                .getElementById("dayViewModal")
-                .classList.remove("open");
-
-        });
-
-    }
-
-});
-
 function createTimeGrid(){
 
     const timeGrid =
@@ -211,31 +250,27 @@ function createTimeGrid(){
 
     timeGrid.innerHTML = "";
 
-    // 상단 분 표시
     const header =
         document.createElement("div");
 
     header.className = "time-header";
 
-    header.innerHTML = `
-        <div></div>
-        <div class="minute-label">05</div>
-        <div class="minute-label">10</div>
-        <div class="minute-label">15</div>
-        <div class="minute-label">20</div>
-        <div class="minute-label">25</div>
-        <div class="minute-label">30</div>
-        <div class="minute-label">35</div>
-        <div class="minute-label">40</div>
-        <div class="minute-label">45</div>
-        <div class="minute-label">50</div>
-        <div class="minute-label">55</div>
-        <div class="minute-label">60</div>
-    `;
+    let headerHtml = "<div></div>";
+
+    for(let i = 5; i <= 60; i += 5){
+
+        headerHtml += `
+            <div class="minute-label">
+                ${String(i).padStart(2,"0")}
+            </div>
+        `;
+
+    }
+
+    header.innerHTML = headerHtml;
 
     timeGrid.appendChild(header);
 
-    // 24시간 생성
     for(let hour = 0; hour < 24; hour++){
 
         const row =
@@ -250,6 +285,7 @@ function createTimeGrid(){
             blocks += `
                 <div class="time-block"></div>
             `;
+
         }
 
         row.innerHTML = `
@@ -261,33 +297,66 @@ function createTimeGrid(){
         `;
 
         timeGrid.appendChild(row);
+
     }
+
 }
 
 function openScheduleModal(dayNumber){
 
-    const modal =
-        document.getElementById("scheduleModal");
+    selectedDay = dayNumber;
 
-    modal.classList.add("open");
+    document
+        .getElementById("scheduleModal")
+        .classList.add("open");
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function saveSchedule(){
 
-    const cancelBtn =
-        document.getElementById("cancelSchedule");
+    const title =
+        document
+        .getElementById("scheduleTitle")
+        .value;
 
-    if(cancelBtn){
+    if(!title) return;
 
-        cancelBtn.addEventListener("click", () => {
+    schedules.push({
+
+        year:
+            currentDate.getFullYear(),
+
+        month:
+            currentDate.getMonth() + 1,
+
+        day:
+            selectedDay,
+
+        title:
 
             document
-                .getElementById("scheduleModal")
-                .classList.remove("open");
+            .getElementById("allDayCheck")
+            .checked
 
-        });
+                ? "[종일] " + title
 
-    }
+                : title,
 
-});
+        category:
+            document
+            .getElementById("scheduleCategory")
+            .value
+
+    });
+
+    document
+        .getElementById("scheduleModal")
+        .classList.remove("open");
+
+    document
+        .getElementById("scheduleTitle")
+        .value = "";
+
+    renderCalendar();
+
+}
