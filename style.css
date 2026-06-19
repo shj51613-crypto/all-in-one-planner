@@ -475,6 +475,7 @@ textarea{
 #dayScheduleList{
 
     margin-top:12px;
+    margin-bottom:20px;
 
     display:flex;
     flex-direction:column;
