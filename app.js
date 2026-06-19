@@ -275,7 +275,7 @@ function openDayView(dayNumber){
     selectedDate.textContent =
         `${month}월 ${dayNumber}일`;
 
-    createTimeGrid();
+    createTimeGrid(dayNumber);
 
     modal.classList.add("open");
 
