@@ -420,22 +420,6 @@ textarea{
     color:white;
 }
 
-.calendar-schedule.개인일정{
-    background:#8fb8ff;
-}
-
-.calendar-schedule.계획{
-    background:#9fd6a5;
-}
-
-.calendar-schedule.가족일정{
-    background:#f6b37b;
-}
-
-.calendar-schedule.스포츠일정{
-    background:#d89bf3;
-}
-
 .calendar-schedule{
     margin-bottom:2px;
     padding:2px 6px;
