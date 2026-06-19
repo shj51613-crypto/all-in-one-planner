@@ -347,15 +347,7 @@ function saveSchedule(){
         day:
             selectedDay,
 
-        title:
-
-            document
-            .getElementById("allDayCheck")
-            .checked
-
-                title: title,
-
-                : title,
+        title: title,
 
         category:
             document
