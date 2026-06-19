@@ -281,7 +281,7 @@ function openDayView(dayNumber){
 
 }
 
-function createTimeGrid(){
+function createTimeGrid(dayNumber){
 
     const timeGrid =
         document.getElementById("timeGrid");
@@ -289,6 +289,13 @@ function createTimeGrid(){
     if(!timeGrid) return;
 
     timeGrid.innerHTML = "";
+
+    const selectedSchedules =
+        schedules.filter(item =>
+            item.year === currentDate.getFullYear() &&
+            item.month === currentDate.getMonth() + 1 &&
+            item.day === dayNumber
+        );
 
     const header =
         document.createElement("div");
