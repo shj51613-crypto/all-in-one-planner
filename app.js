@@ -83,6 +83,49 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", () => {
 
         document
+    .getElementById("editScheduleBtn")
+    .addEventListener("click", () => {
+
+        const item =
+            window.selectedScheduleItem;
+
+        if(!item) return;
+
+        editingIndex =
+            schedules.findIndex(
+                schedule =>
+                    schedule === item
+            );
+
+        document
+            .getElementById("scheduleTitle")
+            .value = item.title;
+
+        document
+            .getElementById("scheduleCategory")
+            .value = item.category;
+
+        document
+            .getElementById("allDayCheck")
+            .checked = item.allDay;
+
+        document
+            .getElementById("startTime")
+            .value = item.startTime || "";
+
+        selectedDay = item.day;
+
+        document
+            .getElementById("scheduleActionModal")
+            .classList.remove("open");
+
+        document
+            .getElementById("scheduleModal")
+            .classList.add("open");
+
+    });
+
+        document
             .getElementById("scheduleActionModal")
             .classList.remove("open");
 
