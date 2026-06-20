@@ -312,6 +312,34 @@ schedule.addEventListener("click", (e) => {
 
     }
 
+    if(action === "edit"){
+
+        document
+            .getElementById("scheduleTitle")
+            .value = item.title;
+
+        document
+            .getElementById("scheduleCategory")
+            .value = item.category;
+
+        document
+            .getElementById("allDayCheck")
+            .checked = item.allDay;
+
+        document
+            .getElementById("startTime")
+            .value = item.startTime || "";
+
+        selectedDay = item.day;
+
+        document
+            .getElementById("scheduleModal")
+            .classList.add("open");
+
+    }
+
+});
+
 });
                 
                 scheduleArea.appendChild(schedule);
