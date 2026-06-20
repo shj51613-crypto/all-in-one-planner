@@ -6,6 +6,8 @@ let schedules =
     ) || [];
 let selectedDay = null;
 
+let editingIndex = null;
+
 let dayMemos =
     JSON.parse(
         localStorage.getItem("dayMemos")
