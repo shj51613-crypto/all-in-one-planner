@@ -79,57 +79,98 @@ document.addEventListener("DOMContentLoaded", () => {
         .addEventListener("click", saveSchedule);
 
     document
-    .getElementById("closeActionModal")
-    .addEventListener("click", () => {
+.getElementById("closeActionModal")
+.addEventListener("click", () => {
 
-        document
-    .getElementById("editScheduleBtn")
-    .addEventListener("click", () => {
+```
+    document
+        .getElementById("scheduleActionModal")
+        .classList.remove("open");
 
-        const item =
-            window.selectedScheduleItem;
+});
+```
 
-        if(!item) return;
+document
+.getElementById("editScheduleBtn")
+.addEventListener("click", () => {
 
-        editingIndex =
-            schedules.findIndex(
-                schedule =>
-                    schedule === item
-            );
+```
+    const item =
+        window.selectedScheduleItem;
 
-        document
-            .getElementById("scheduleTitle")
-            .value = item.title;
+    if(!item) return;
 
-        document
-            .getElementById("scheduleCategory")
-            .value = item.category;
+    editingIndex =
+        schedules.findIndex(
+            schedule =>
+                schedule === item
+        );
 
-        document
-            .getElementById("allDayCheck")
-            .checked = item.allDay;
+    document
+        .getElementById("scheduleTitle")
+        .value = item.title;
 
-        document
-            .getElementById("startTime")
-            .value = item.startTime || "";
+    document
+        .getElementById("scheduleCategory")
+        .value = item.category;
 
-        selectedDay = item.day;
+    document
+        .getElementById("allDayCheck")
+        .checked = item.allDay;
 
-        document
-            .getElementById("scheduleActionModal")
-            .classList.remove("open");
+    document
+        .getElementById("startTime")
+        .value = item.startTime || "";
 
-        document
-            .getElementById("scheduleModal")
-            .classList.add("open");
+    selectedDay = item.day;
 
-    });
+    document
+        .getElementById("scheduleActionModal")
+        .classList.remove("open");
 
-        document
-            .getElementById("scheduleActionModal")
-            .classList.remove("open");
+    document
+        .getElementById("scheduleModal")
+        .classList.add("open");
 
-    });
+});
+```
+
+document
+.getElementById("deleteScheduleBtn")
+.addEventListener("click", () => {
+
+```
+    const item =
+        window.selectedScheduleItem;
+
+    if(!item) return;
+
+    const index =
+        schedules.findIndex(
+            schedule =>
+                schedule === item
+        );
+
+    if(index !== -1){
+
+        schedules.splice(index, 1);
+
+        localStorage.setItem(
+            "schedules",
+            JSON.stringify(schedules)
+        );
+
+    }
+
+    document
+        .getElementById("scheduleActionModal")
+        .classList.remove("open");
+
+    renderCalendar();
+
+});
+```
+
     
     const trackerTab =
     document.getElementById("trackerTab");
