@@ -605,6 +605,8 @@ if(editingIndex !== null){
         .getElementById("scheduleTitle")
         .value = "";
 
+    editingIndex = null;
+
     renderCalendar();
 
 }
