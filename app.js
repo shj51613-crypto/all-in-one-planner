@@ -317,7 +317,10 @@ schedule.addEventListener("click", (e) => {
     if(action === "edit"){
 
         editingIndex =
-            schedules.indexOf(item);
+            schedules.findIndex(
+                schedule =>
+                    schedule === item
+            );
 
         document
             .getElementById("scheduleTitle")
