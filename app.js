@@ -660,3 +660,6 @@ if(editingIndex !== null){
     renderCalendar();
 
 }
+
+alert("app.js 실행됨");
+    
