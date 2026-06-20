@@ -313,6 +313,21 @@ schedule.addEventListener("click", (e) => {
 
             });
 
+        if(daySchedules.length > 2){
+
+    const more =
+        document.createElement("div");
+
+    more.className =
+        "calendar-more";
+
+    more.textContent =
+        `+${daySchedules.length - 2}개 더`;
+
+    scheduleArea.appendChild(more);
+
+}
+
         dateArea.addEventListener("click", (e) => {
 
             e.stopPropagation();
@@ -336,6 +351,8 @@ schedule.addEventListener("click", (e) => {
 }
 
 function openDayView(dayNumber){
+
+    selectedDay = dayNumber;
 
     const modal =
         document.getElementById("dayViewModal");
