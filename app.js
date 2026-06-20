@@ -339,8 +339,6 @@ schedule.addEventListener("click", (e) => {
     }
 
 });
-
-});
                 
                 scheduleArea.appendChild(schedule);
 
