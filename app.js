@@ -78,6 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("saveSchedule")
         .addEventListener("click", saveSchedule);
 
+    document
+    .getElementById("closeActionModal")
+    .addEventListener("click", () => {
+
+        document
+            .getElementById("scheduleActionModal")
+            .classList.remove("open");
+
+    });
+    
     const trackerTab =
     document.getElementById("trackerTab");
 
