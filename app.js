@@ -303,58 +303,11 @@ schedule.addEventListener("click", (e) => {
 
     e.stopPropagation();
 
-    const action =
-        prompt(
-            "수정하려면 'edit'\n삭제하려면 'delete' 입력"
-        );
+    window.selectedScheduleItem = item;
 
-    if(action === "delete"){
-
-        const index =
-            schedules.indexOf(item);
-
-        schedules.splice(index, 1);
-
-        localStorage.setItem(
-            "schedules",
-            JSON.stringify(schedules)
-        );
-
-        renderCalendar();
-
-    }
-
-    if(action === "edit"){
-
-        editingIndex =
-            schedules.findIndex(
-                schedule =>
-                    schedule === item
-            );
-
-        document
-            .getElementById("scheduleTitle")
-            .value = item.title;
-
-        document
-            .getElementById("scheduleCategory")
-            .value = item.category;
-
-        document
-            .getElementById("allDayCheck")
-            .checked = item.allDay;
-
-        document
-            .getElementById("startTime")
-            .value = item.startTime || "";
-
-        selectedDay = item.day;
-
-        document
-            .getElementById("scheduleModal")
-            .classList.add("open");
-
-    }
+    document
+        .getElementById("scheduleActionModal")
+        .classList.add("open");
 
 });
                 
