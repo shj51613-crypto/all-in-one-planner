@@ -547,35 +547,50 @@ function saveSchedule(){
 
     if(!title) return;
 
-    schedules.push({
+    const scheduleData = {
 
-        year:
-            currentDate.getFullYear(),
+    year:
+        currentDate.getFullYear(),
 
-        month:
-            currentDate.getMonth() + 1,
+    month:
+        currentDate.getMonth() + 1,
 
-        day:
-            selectedDay,
+    day:
+        selectedDay,
 
-        title: title,
+    title: title,
 
-        category:
-            document
-            .getElementById("scheduleCategory")
-            .value,
+    category:
+        document
+        .getElementById("scheduleCategory")
+        .value,
 
-        allDay:
-            document
-            .getElementById("allDayCheck")
-            .checked,
+    allDay:
+        document
+        .getElementById("allDayCheck")
+        .checked,
 
-        startTime:
-            document
-            .getElementById("startTime")
-            .value
+    startTime:
+        document
+        .getElementById("startTime")
+        .value
 
-    });
+};
+
+if(editingIndex !== null){
+
+    schedules[editingIndex] =
+        scheduleData;
+
+    editingIndex = null;
+
+}else{
+
+    schedules.push(
+        scheduleData
+    );
+
+}
 
     localStorage.setItem(
     "schedules",
