@@ -629,33 +629,38 @@ function saveSchedule(){
 
     const scheduleData = {
 
-    year:
-        currentDate.getFullYear(),
+        year:
+            currentDate.getFullYear(),
 
-    month:
-        currentDate.getMonth() + 1,
+        month:
+            currentDate.getMonth() + 1,
 
-    day:
-        selectedDay,
+        day:
+            selectedDay,
 
-    title: title,
+        title: title,
 
-    category:
-        document
-        .getElementById("scheduleCategory")
-        .value,
+        category:
+            document
+            .getElementById("scheduleCategory")
+            .value,
 
-    allDay:
-        document
-        .getElementById("allDayCheck")
-        .checked,
+        allDay:
+            document
+            .getElementById("allDayCheck")
+            .checked,
 
-    startTime:
-        document
-        .getElementById("startTime")
-        .value
+        startTime:
+            document
+            .getElementById("startTime")
+            .value,
 
-};
+        repeatType:
+            document
+            .getElementById("repeatType")
+            .value
+
+    };
 
 if(editingIndex !== null){
 
