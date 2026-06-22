@@ -403,6 +403,12 @@ schedule.addEventListener("click", (e) => {
 
         const dayKey =
             `${year}-${month + 1}-${displayNumber}`;
+
+        console.log(
+            "렌더링:",
+            dayKey,
+            expandedDay[dayKey]
+        );
         
         if(
             daySchedules.length > 2 ||
@@ -433,8 +439,12 @@ schedule.addEventListener("click", (e) => {
 
                 e.stopPropagation();
 
+                console.log("클릭한 dayKey:", dayKey);
+
                 expandedDays[dayKey] =
                     !expandedDays[dayKey];
+
+                console.log(expandeDays);
 
                 renderCalendar();
 
