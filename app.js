@@ -417,11 +417,17 @@ schedule.addEventListener("click", (e) => {
             const expanded =
                 expandedDays[dayKey];
 
-            more.textContent =
-                expanded
-                    ? "접기"
-                    : `+${daySchedules.length - 2}개 더`;
+            if(expanded){
 
+                more.textContent = "접기";
+
+            }else{
+
+                more.textContent =
+                    `+${daySchedules.length - 2}개 더`;
+
+            }
+            
             more.addEventListener("click", (e) => {
 
                 e.stopPropagation();
