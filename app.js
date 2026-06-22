@@ -341,12 +341,64 @@ function renderCalendar(){
             day.querySelector(".schedule-area");
 
         const daySchedules =
-            schedules.filter(item =>
-                item.year === year &&
-                item.month === month + 1 &&
-                item.day === displayNumber
-            );
+            schedules.filter(item => {
 
+                if(
+                    item.year === year &&
+                    item.month === month + 1 &&
+                    item.day === displayNumber
+                ){
+                    return true;
+                }
+
+                const current =
+                    new Date(
+                        year,
+                        month,
+                        displayNumber
+                    );
+
+                const original =
+                    new Date(
+                        item.year,
+                        item.month - 1,
+                        item.day
+                    );
+
+                switch(item.repeatType){
+
+                    case "daily":
+                        return current > original;
+
+                    case "weekly":
+                        return (
+                            current > original &&
+                            current.getDay() ===
+                            original.getDay()
+                        );
+
+                    case "monthly":
+                        return (
+                            current > original &&
+                            current.getDate() ===
+                            original.getDate()
+                        );
+
+                    case "yearly":
+                        return (
+                            current > original &&
+                            current.getDate() ===
+                            original.getDate() &&
+                            current.getMonth() ===
+                            original.getMonth()
+                        );
+
+                    default:
+                        return false;
+                }
+
+            });
+        
         daySchedules.sort((a, b) => {
 
             if(a.allDay && !b.allDay) return -1;
