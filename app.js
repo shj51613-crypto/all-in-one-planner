@@ -123,7 +123,7 @@ document
         .value = item.startTime || "";
 
     document
-        .getElementyById("repeatType")
+        .getElementById("repeatType")
         .value =
             item.repeatType || "none";
 
