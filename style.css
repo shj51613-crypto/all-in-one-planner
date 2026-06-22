@@ -191,7 +191,7 @@ textarea{
 }
 
 .schedule-area{
-    height:60px;
+    min-height:60px;
     padding:2px 4px;
 }
 
