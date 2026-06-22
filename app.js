@@ -4,6 +4,7 @@ let schedules =
     JSON.parse(
         localStorage.getItem("schedules")
     ) || [];
+
 let selectedDay = null;
 
 let editingIndex = null;
