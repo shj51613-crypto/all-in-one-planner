@@ -128,6 +128,13 @@ document
             item.repeatType || "none";
 
     document
+        .getElementById("weeklyRepeatBox")
+        .style.display =
+            item.repeatType === "weekly"
+                ? "block"
+                : "none";
+    
+    document
         .getElementById("repeatEndDate")
         .value =
             item.repeatEndDate || "";
