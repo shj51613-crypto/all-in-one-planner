@@ -139,6 +139,25 @@ document
         .value =
             item.repeatEndDate || "";
 
+    document
+        .querySelectorAll(
+            "#weeklyRepeatBox input"
+        )
+        .forEach(checkbox => {
+
+            checkbox.checked = false;
+
+            if(
+                item.repeatDays &&
+                item.repeatDays.includes(
+                    Number(checkbox.value)
+                )
+            ){
+                checkbox.checked = true;
+            }
+
+        });
+
     selectedDay = item.day;
 
     document
