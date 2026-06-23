@@ -745,7 +745,12 @@ function saveSchedule(){
             ).map(
                 checkbox =>
                     Number(checkbox.value)
-            )
+            ),
+
+        repeatEndDate:
+            document
+                .getElementById("repeatEndDate")
+                .value
 
     };
 
