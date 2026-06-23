@@ -383,6 +383,30 @@ function renderCalendar(){
                         item.day
                     );
 
+                if(item.repeatEndDate)(
+
+                    const endDate =
+                        new Date(item.repeatEndDate);
+
+                    endDate.setHours(
+                        23,
+                        59,
+                        59,
+                        999
+                    );
+
+                    const currentDateObj =
+                        new Date(
+                            year,
+                            month,
+                            displayNumber
+                        );
+
+                    if(currentDateObj > endDate){
+                        return false;
+                    }
+                }
+
                 switch(item.repeatType){
 
                     case "daily":
