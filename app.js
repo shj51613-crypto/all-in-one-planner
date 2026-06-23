@@ -383,7 +383,7 @@ function renderCalendar(){
                         item.day
                     );
 
-                if(item.repeatEndDate)(
+                if(item.repeatEndDate){
 
                     const endDate =
                         new Date(item.repeatEndDate);
