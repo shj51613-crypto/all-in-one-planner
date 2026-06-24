@@ -18,6 +18,13 @@ let dayMemos =
 
 function getLunarText(year, month, day){
 
+    if(
+        typeof KoreanLunarCalendar ===
+        "undefined"
+    ){
+        return "";
+    }
+
     const lunar =
         new KoreanLunarCalendar();
 
@@ -43,7 +50,7 @@ function getLunarText(year, month, day){
             : "음";
 
     return `${prefix}${lunarMonth}.${lunarDay}`;
-}    
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 
