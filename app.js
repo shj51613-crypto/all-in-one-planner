@@ -34,18 +34,21 @@ function getLunarText(year, month, day){
         day
     );
 
+    const data =
+        lunar.getLunarCalendar();
+
     const lunarMonth =
         Number(
-            lunar.lunarMonth
+            data.month
         );
 
     const lunarDay =
         Number(
-            lunar.lunarDay
+            data.day
         );
 
     const prefix =
-        lunar.isIntercalation
+        data.intercalation
             ? "윤"
             : "음";
 
