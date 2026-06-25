@@ -883,6 +883,10 @@ function openScheduleModal(dayNumber){
             .value = "";
 
         document
+            .getElementById("lunarScheduleCheck")
+            .checked = false;
+
+        document
             .getElementById("weeklyRepeatBox")
             .style.display = "none";
 
