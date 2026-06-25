@@ -513,3 +513,14 @@ textarea{
     vertical-align:top;
     letter-spacing:-0.2px;
 }
+
+.holiday{
+    color:#e53935;
+}
+
+.holiday-name{
+    font-size:10px;
+    color:#e53935;
+    margin-top:1px;
+    font-weight:500;
+}
