@@ -1015,7 +1015,40 @@ function saveSchedule(){
         isLunar:
             document
                 .getElementById("lunarScheduleCheck")
+                .checked,
+
+        lunarMonth:
+            document
+                .getElementById("lunarScheduleCheck")
                 .checked
+                ? getLunarInfo(
+                    selectedYear,
+                    selectedMonth + 1,
+                    selectedDay
+                  ).month
+                : null,
+
+        lunarDay:
+            document
+                .getElementById("lunarScheduleCheck")
+                .checked
+                ? getLunarInfo(
+                    selectedYear,
+                    selectedMonth + 1,
+                    selectedDay
+                  ).day
+                : null,
+
+        isLeapMonth:
+            document
+                .getElementById("lunarScheduleCheck")
+                .checked
+                ? getLunarInfo(
+                    selectedYear,
+                    selectedMonth + 1,
+                    selectedDay
+                  ).isLeapMonth
+                : false
 
         };
 
