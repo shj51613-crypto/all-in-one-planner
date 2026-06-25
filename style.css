@@ -518,9 +518,12 @@ textarea{
     color:#e53935;
 }
 
-.holiday-name{
-    font-size:10px;
+.calendar-holiday{
+    font-size:11px;
     color:#e53935;
-    margin-top:1px;
-    font-weight:500;
+    font-weight:600;
+    margin-top:2px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
