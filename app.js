@@ -55,6 +55,39 @@ function getLunarText(year, month, day){
     return `${prefix}${lunarMonth}.${lunarDay}`;
 }
 
+function getLunarInfo(year, month, day){
+
+    if(
+        typeof KoreanLunarCalendar
+        === "undefined"
+    ){
+        return null;
+    }
+
+    const lunar =
+        new KoreanLunarCalendar();
+
+    lunar.setSolarDate(year, month, day);
+
+    return {
+
+        month:
+            Number(
+                lunar.lunarMonth
+            ),
+
+        day:
+            Number(
+                lunar.lunarDay
+            ),
+
+        isLeapMonth:
+            lunar.isIntercalation
+
+    };
+
+}
+
 function getHolidayName(year, month, day){
 
     const solarKey =
