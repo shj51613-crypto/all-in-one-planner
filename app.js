@@ -25,6 +25,8 @@ function getLunarText(year, month, day){
         return "";
     }
 
+    alert(typeof KoreanLunarCalendar);
+
     const lunar =
         new KoreanLunarCalendar();
 
