@@ -1055,8 +1055,8 @@ function saveSchedule(){
                 .getElementById("lunarScheduleCheck")
                 .checked
                 ? getLunarInfo(
-                    selectedYear,
-                    selectedMonth + 1,
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() + 1,
                     selectedDay
                   ).month
                 : null,
@@ -1066,8 +1066,8 @@ function saveSchedule(){
                 .getElementById("lunarScheduleCheck")
                 .checked
                 ? getLunarInfo(
-                    selectedYear,
-                    selectedMonth + 1,
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() + 1,
                     selectedDay
                   ).day
                 : null,
@@ -1077,8 +1077,8 @@ function saveSchedule(){
                 .getElementById("lunarScheduleCheck")
                 .checked
                 ? getLunarInfo(
-                    selectedYear,
-                    selectedMonth + 1,
+                    currentDate.getFullYear(),
+                    currentDate.getMonth() + 1,
                     selectedDay
                   ).isLeapMonth
                 : false
